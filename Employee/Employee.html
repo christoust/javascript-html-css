@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Employee Form</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#employee-form").submit(function(event) {
+				event.preventDefault();
+				var formData = $(this).serialize();
+				var url = $(this).attr("action");
+				var method = $(this).attr("method");
+				$.ajax({
+					url: url,
+					method: method,
+					data: formData,
+					success: function(response) {
+						alert("Form submitted successfully!");
+					},
+					error: function(xhr, status, error) {
+						alert("Error submitting form: " + error);
+					}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<form id="employee-form" method="post" action="submit.php">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required><br><br>
+
+		<label for="id">ID:</label>
+		<input type="text" id="id" name="id" required><br><br>
+
+		<label for="location">Location:</label>
+		<input type="text" id="location" name="location" required><br><br>
+
+		<label for="address">Address:</label>
+		<textarea id="address" name="address" required></textarea><br><br>
+
+		<label for="blood-group">Blood Group:</label>
+		<input type="text" id="blood-group" name="blood-group" required><br><br>
+
+		<label for="experience">Experience:</label>
+		<input type="text" id="experience" name="experience" required><br><br>
+
+		<label for="skills">Skills:</label>
+		<input type="text" id="skills" name="skills" required><br><br>
+
+		<button type="submit">Submit</button>
+	</form>
+	
+	<script>
+		$(document).ready(function() {
+			$("#employee-form-get").submit(function(event) {
+				event.preventDefault();
+				var formData = $(this).serialize();
+				var url = $(this).attr("action") + "?" + formData;
+				$.get(url, function(response) {
+					alert("Form submitted successfully!");
+				}).fail(function(xhr, status, error) {
+					alert("Error submitting form: " + error);
+				});
+			});
+		});
+	</script>
+	
+	<form id="employee-form-get" method="get" action="submit.php">
+		<label for="name-get">Name:</label>
+		<input type="text" id="name-get" name="name" required><br><br>
+
+		<label for="id-get">ID:</label>
+		<input type="text" id="id-get" name="id" required><br><br>
+
+		<label for="location-get">Location:</label>
+		<input type="text" id="location-get" name="location" required><br><br>
+
+		<label for="address-get">Address:</label>
+		<textarea id="address-get" name="address" required></textarea><br><br>
+
+		<label for="blood-group-get">Blood Group:</label>
+		<input type="text" id="blood-group-get

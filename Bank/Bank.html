@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bank Website</title>
+        <style>
+            form {
+              margin: auto;
+              width: 50%;
+            }
+            h2
+            {
+                text-align: center;
+            }
+            nav {
+        background-color: #f2f2f2;
+        padding: 20px;
+        text-align: center;
+      }
+      nav a {
+        color: #333;
+        text-decoration: none;
+        padding: 10px;
+      }
+      nav a:hover {
+        background-color: #ddd;
+      }
+      footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+      footer a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+      }
+      footer a:hover {
+        background-color: #666;
+      }
+      body{
+        text-align: center; 
+
+      }
+      form {
+			background-color: white;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px grey;
+		}
+		input[type="text"], select, textarea {
+			width: 70%;
+			padding: 10px 10px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			font-size: 16px;
+			font-family: Arial, sans-serif;
+		}
+        
+            input[type="number"], select, textarea {
+			width: 70%;
+			padding: 10px 10px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			font-size: 16px;
+			font-family: Arial, sans-serif;
+        }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a href="Home.html">Home</a>
+            <!-- <a href="Bank.html">Banking</a> -->
+            <a href="#contact">Contact</a>
+          </nav>
+        <p>The current date is:</p>
+        <p id="current-date"></p>
+        
+
+    <script>
+      var currentDate = new Date();
+      document.getElementById("current-date").innerHTML = currentDate;
+    </script>
+        <h2 >Interest Calculator</h2>
+        <form id="interest-form" >
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="aadhar">Aadhar Number:</label> <br>
+            <input type="text" id="aadhar" name="aadhar" minlength="12" maxlength="12" pattern=^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$  required><br>
+            <label for="pan">PAN Number:</label><br>
+            <input type="text" id="pan" name="pan" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required><br>
+            <label for="branch">Branch:</label><br>
+            <input type="text" id="branch" name="branch"><br>
+            <label for="amt">Amount:</label><br>
+            <input type="number" id="amt" name="amt"><br>
+            <label for="time">Time:</label><br>
+            <input type="number" id="time" name="time"><br>
+            <label for="rate">Rate:</label><br>
+            <select name="rate" id="rate">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select><br>
+        <button type="button" onclick="calculateInterest()">Calculate</button>
+
+        
+        </form>
+        <p id="interest-result"></p>
+
+<script>
+function calculateInterest() {
+  // Get form input values
+  const principal = document.getElementById("amt").value;
+  const rate = document.getElementById("rate").value;
+  const time = document.getElementById("time").value;
+  var panInput = document.getElementById("pan");
+  var aadhar = document.getElementById("aadhar").value;
+  var aadhaarRegex = /^\d{12}$/;
+  var name = document.getElementById("name").value;
+var panRegex = /[A-Z]{5}[0-9]{4}[A-Z]{1}/;
+        if (!panRegex.test(panInput.value)) {
+          alert("Invalid PAN number. Please enter a valid PAN number.");
+          panInput.focus();
+        }
+        if (!aadhaarRegex.test(aadhar)) {
+          alert("Invalid Aadhaar number. Please enter a 12-digit number.");
+          return false;
+        }
+
+  // Calculate interest
+  const interest = (principal * rate * time) / 100;
+ 
+	
+
+	// Display the form data on the page
+	// document.getElementById("form-data").innerHTML = "<p>Name: " + name + "</p><p>Aadhar No: " + aadhar + "</p><p>PAN number: " + panInput + "</p>";
+  
+
+  // Display input values and interest
+  const resultElement = document.getElementById("interest-result");
+  resultElement.innerHTML = `Input values: Name = ${name}, Principal amount = ${principal}, Interest rate = ${rate}, Time period = ${time}<br>Interest = ${interest}`;
+}
+</script>
+        <footer id="contact">
+            <h2>Contact Us</h2>
+            <p>Technopark phase3<br>Kulathoor,Kazhakuttam<br>Phone: 6238249203<br>Email: ust@bank.com</p>
+        </footer>
+
+    </body>
+</html>
